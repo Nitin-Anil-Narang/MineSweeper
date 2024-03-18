@@ -18,7 +18,7 @@ class Cell:
             location,
             width=12,
             height=4,
-            text=f"{self.x},{self.y}"
+            # text=f"{self.x},{self.y}"
         )
         btn.bind('<Button-1>',self.left_click)
         btn.bind('<Button-3>',self.right_click)
@@ -50,10 +50,20 @@ class Cell:
         ]
         cells = [cell for cell in cells if cell is not None]
         return cells
-        
-    def show_cell(self):
-        print(self.surrounded_cell)
 
+    @property
+    def surrounded_cells_mines_length(self):
+        counter = 0
+        for cell in self.surrounded_cell:
+            if(cell.is_mine):
+                counter += 1
+        
+        return counter
+
+    def show_cell(self):
+        # print(self.surrounded_cell)
+        # print(self.surrounded_cells_mines_length)
+        self.cell_btn_object.config(text = self.surrounded_cells_mines_length)
     def show_mine(self):
         # logic to interrupt game and display lose for a player
         self.cell_btn_object.config(
