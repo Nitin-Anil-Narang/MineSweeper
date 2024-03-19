@@ -5,8 +5,10 @@ from cell import Cell
 
 root = Tk()
 #settings OverWrite
+# root.attributes('-fullscreen',True)
 root.config(bg="black")
 root.geometry(f'{settings.WIDTH}x{settings.HEIGHT}')
+# root.geometry('{}x{}+0+0'.format(root.winfo_screenwidth(),root.winfo_screenheight()))
 root.title("MineSweeper")
 root.resizable(False,False)
 
@@ -49,6 +51,11 @@ for x in range(settings.GRID_SIZE):
             column=x,row=y
         )
 
+#Calling the label from the class
+Cell.create_cell_count_label(left_frame)
+Cell.cell_count_label_object.place(
+    x=0,y=0
+)
 Cell.randomize_mine()
 #Checking the is_mine property
 # for c in Cell.all:
